@@ -1,0 +1,31 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#events .activity {
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+#events .activity .innerActivity{
+  background-color: #fff;
+  margin-top: 20px;
+  padding: 4px;
+}
+
+.activityOptions {
+  background-color: #ff99d0;
+  padding: 3px;
+}
+
+.activityOptions .row {
+  padding-right: 14px;
+}
+.nav.navbar-nav.navbar-right{
+  padding-right:10px;
+}
