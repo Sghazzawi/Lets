@@ -27,7 +27,7 @@ a {
 .innerActivity .activityHeader {
   margin-top: 3px;
 }
-.activityContent {
+.activities .activityContent {
   max-height:350px;
   overflow:hidden;
 }

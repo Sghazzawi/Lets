@@ -14,6 +14,7 @@ requirejs.config ({
     addActivityView: "javascripts/views/addActivityView",
     activitiesView: "javascripts/views/activitiesView",
     activitySummaryView: "javascripts/views/activitySummaryView",
+    activityView: "javascripts/views/activityView",
     addTagView: "javascripts/views/addTagView",
     addURLView: "javascripts/views/addURLView",
     addNoteView: "javascripts/views/addNoteView",

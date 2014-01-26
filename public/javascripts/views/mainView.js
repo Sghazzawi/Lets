@@ -13,16 +13,14 @@ define(['jquery'
 
       initialize:  function () {
         _.bindAll(this, 'render');
-        this.activitiesCollection = new ActivitiesCollection();
-        this.activitiesCollection.reset(btstrp);
         this.render();
       },
 
       render: function () {
         this.$el.addClass("main container");
         this.$el.append(Handlebars.compile(mainTemplate()));
-        this.addActivityView = new AddActivityView({collection: this.activitiesCollection});
-        this.activitiesView = new ActivitiesView({collection: this.activitiesCollection});
+        this.addActivityView = new AddActivityView({collection: this.collection});
+        this.activitiesView = new ActivitiesView({collection: this.collection});
         this.$el.append(this.addActivityView.$el);
         this.$el.append(this.activitiesView.$el);
       }
