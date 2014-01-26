@@ -7,6 +7,7 @@ requirejs.config ({
     backbone: "bower_components/backbone/backbone",
     handlebars: "bower_components/handlebars/handlebars",
     hbs: "bower_components/require-handlebars-plugin/hbs",
+    datePicker: "bower_components/bootstrap-datepicker/js/bootstrap-datepicker",
     mainView: "javascripts/views/mainView",
     activityModel: "javascripts/models/activityModel",
     activitiesCollection: "javascripts/collections/activitiesCollection",
@@ -15,12 +16,19 @@ requirejs.config ({
     activitySummaryView: "javascripts/views/activitySummaryView",
     addTagView: "javascripts/views/addTagView",
     addURLView: "javascripts/views/addURLView",
-    addNoteView: "javascripts/views/addNoteView"
+    addNoteView: "javascripts/views/addNoteView",
+    addDateView: "javascripts/views/addDateView",
+    socketio: "/socket.io/socket.io",
+    socketFactory: "javascripts/socketFactory",
+    realTimeModel: "javascripts/models/realTimeModel"
   },
   hbs:{
     partialsUrl: 'javascripts/templates'
   },
   shim: {
+    socketio: {
+      exports: 'io'
+    },
     underscore: {
       exports: '_'
     },

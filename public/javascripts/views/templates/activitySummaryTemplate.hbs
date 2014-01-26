@@ -1,33 +1,39 @@
-<div class="col-md-6 activity">
-  <div class="innerActivity">
-      <button type="button" class="close" aria-hidden="true">&times;</button>
-      <h3>{{title}}</h3>
-    {{#each tags}}
-    <h6><span class="label label-info">{{this}}</span></h6>
-    {{/each}}
-    <hr>
-    {{#each links}}
+<div class="innerActivity col-md-12">
+  <div class="activityHeader col-md-12">
+    <button type="button" class="close" aria-hidden="true"><span class="glyphicon glyphicon-trash"></span></button>
+    <h3>{{title}}</h3>
     <div class="row">
-      <div class="col-md-8">
-        <a href="#" class="thumbnail">
-          <img src="/letsdoit/images/webThumbs/{{thumbnail}}" alt="{{url}}">
-        </a>
+      {{#each tags}}
+        <div class="col-md-1">
+          <h6><span class="label label-info">{{this}}</span></h6>
+        </div>
+      {{/each}}
+    </div>
+    <hr>
+  </div>
+  <div class="activityContent col-md-12">
+    {{#each links}}
+      <div class="row">
+        <div class="col-md-6" >
+          <div class="thumbnail">
+            <img src="/letsdoit/images/webThumbs/{{thumbnail}}" alt="{{url}}">
+          </div>
+        </div>
       </div>
-    </div>
     {{/each}}
-    <div class="activityOptions" align="center">
-      <button type="button" class="btn btn-default note">
-        <span class="glyphicon glyphicon-pencil "></span>
-      </button>
-      <button type="button" class="btn btn-default url">
-        <span class="glyphicon glyphicon-link "></span>
-      </button>
-      <button type="button" class="btn btn-default tag">
-        <span class="glyphicon glyphicon-tag "></span>
-      </button>
-      <button type="button" class="btn btn-default schedule">
-        <span class="glyphicon glyphicon-calendar "></span>
-      </button>
-    </div>
+  </div>
+  <div class="activityOptions col-md-12" align="center">
+    <button type="button" class="btn btn-default note" data-toggle="tooltip" title="Add Note">
+      <span class="glyphicon glyphicon-pencil "></span>
+    </button>
+    <button type="button" class="btn btn-default url" data-toggle="tooltip" title="Add Link">
+      <span class="glyphicon glyphicon-link "></span>
+    </button>
+    <button type="button" class="btn btn-default tag" data-toggle="tooltip" title="Add Tag">
+      <span class="glyphicon glyphicon-tag "></span>
+    </button>
+    <button type="button" class="btn btn-default schedule" data-toggle="tooltip" title="Schedule Activity">
+      <span class="glyphicon glyphicon-calendar "></span>
+    </button>
   </div>
 </div>

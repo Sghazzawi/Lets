@@ -2,11 +2,10 @@ define(['jquery'
        ,'underscore'
        ,'backbone'
        ,'handlebars'
-       ,'activityModel'
+       ,'realTimeModel'
        ,'hbs!javascripts/views/templates/addActivityTemplate'
        , 'bootstrap'], function($, _, Backbone, HandleBars, ActivityModel, addActivityTemplate) {
-    var mainView = Backbone.View.extend({
-      el: $('#addEvent'),
+    var addActivityView = Backbone.View.extend({
 
       events:{
           'click .addEvent button': 'addEvent'
@@ -18,15 +17,17 @@ define(['jquery'
       },
 
       render: function () {
-        $(this.el).append(Handlebars.compile(addActivityTemplate()));
+        this.$el.addClass('addEvent');
+        this.$el.append(Handlebars.compile(addActivityTemplate()));
+        return this;
       },
       
       addEvent: function () {
         var activityModel= new ActivityModel();
-        activityModel.set('title', $('.addEvent input[type="text"]').val());
-        activityModel.set('createdAt', Date.now());
         this.collection.add(activityModel);
+        activityModel.set({'title':this.$('.addEvent input[type="text"]').val(),'createdAt': Date.now()});
+        this.$('.addEvent input[type="text"]').val("");
       }
     });
-    return mainView;
+    return addActivityView;
 });

@@ -6,22 +6,25 @@ define(['jquery'
        ,'addActivityView'
        ,'activityModel'
        ,'activitiesCollection'
+       ,'socketio'
        ,'hbs!javascripts/views/templates/mainTemplate'
-       , 'bootstrap'], function($, _, Backbone, HandleBars, ActivitiesView, AddActivityView, ActivityModel, ActivitiesCollection, mainTemplate) {
+       , 'bootstrap'], function($, _, Backbone, HandleBars, ActivitiesView, AddActivityView, ActivityModel, ActivitiesCollection, io, mainTemplate) {
     var mainView = Backbone.View.extend({
-      el: $('#header'),
 
       initialize:  function () {
         _.bindAll(this, 'render');
         this.activitiesCollection = new ActivitiesCollection();
-        this.activitiesCollection.fetch();
+        this.activitiesCollection.reset(btstrp);
         this.render();
       },
 
       render: function () {
-        $(this.el).append(Handlebars.compile(mainTemplate()));
-        var addActivityView = new AddActivityView({collection: this.activitiesCollection})
-        var activitiesView = new ActivitiesView({collection: this.activitiesCollection})
+        this.$el.addClass("main container");
+        this.$el.append(Handlebars.compile(mainTemplate()));
+        this.addActivityView = new AddActivityView({collection: this.activitiesCollection});
+        this.activitiesView = new ActivitiesView({collection: this.activitiesCollection});
+        this.$el.append(this.addActivityView.$el);
+        this.$el.append(this.activitiesView.$el);
       }
     });
     return mainView;

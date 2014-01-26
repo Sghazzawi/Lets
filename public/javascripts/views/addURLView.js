@@ -17,6 +17,7 @@ define(['jquery'
        $(this.el).append(addTagTemplate({title: 'Add URL'}));
        this.$('.add').on('click', this.addURL);
        this.$('.close').on('click', this.removeView);
+       this.$('input').focus();
        return this;
       },
 

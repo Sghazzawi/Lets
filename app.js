@@ -7,6 +7,24 @@ var express = require('express')
   , routes = require('./routes');
 
 var app = module.exports = express.createServer();
+var io = require('socket.io').listen(app);
+
+io.sockets.on('connection', function (socket) {
+  socket.on('change', function (data) {
+    this.broadcast.to(data._id).emit('change', data);
+  });
+  socket.on('delete', function (data){
+    this.broadcast.to(data).emit('delete', data);
+  });
+  socket.on('create', function(model) {
+    console.log('sending create for '+model._id);
+    this.broadcast.emit('create',model);
+  });
+  socket.on('join', function (room) {
+    socket.join(room);
+    console.log(this.id+' joined '+room);
+  });
+});
 
 // Configuration
 

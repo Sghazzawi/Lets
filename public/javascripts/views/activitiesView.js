@@ -5,38 +5,30 @@ define(['jquery'
        ,'activitySummaryView'
        ,'hbs!javascripts/views/templates/activitiesTemplate'
        , 'bootstrap'], function($, _, Backbone, HandleBars, ActivitySummaryView, activitiesTemplate) {
-    var mainView = Backbone.View.extend({
-      el: $('#events'),
+    var activitiesView = Backbone.View.extend({
 
       initialize:  function () {
-        _.bindAll(this, 'render','onSuccess','appendEvent', 'removeEvent');
-        this.collection.bind('add', this.appendEvent);
-        this.collection.bind('remove', this.removeEvent);
+        _.bindAll(this, 'render', 'refreshView');
+        this.collection.bind('add', this.refreshView);
+        this.collection.bind('newSave', this.refreshView);
+        this.collection.bind('destroy',this.refreshView);
+        this.collection.bind('remove',this.refreshView);
         this.render();
       },
 
       render: function () {
+         this.$el.addClass("events");
          $(this.el).append(activitiesTemplate());
          this.collection.each(function(activity) {
              var activitySummaryView = new ActivitySummaryView({model: activity, collection: this.collection});
-             this.$('.row.activities').append(activitySummaryView.el);
+             this.$('.row.activities').prepend(activitySummaryView.el);
          }.bind(this));
       },
-      onSuccess : function (model) {
-            console.log(model);
+      refreshView : function (model, collections, options) {
+            console.log('refreshing view');
             this.$el.empty();
             this.render();
-      },
-      appendEvent: function (model) {
-        model.save( null, {
-          success: this.onSuccess(model) 
-        });
-      },
-      removeEvent: function (model) {
-        model.destroy({
-          success: this.onSuccess(model) 
-        });
-      }
+     }
     });
-    return mainView;
+    return activitiesView;
 });

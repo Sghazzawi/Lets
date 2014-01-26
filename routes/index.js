@@ -4,8 +4,14 @@ var mongoose = require('mongoose'),
     Activity = require(__dirname+'/../models/activitySchema').model;
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' })
-};
+  Activity.find(function (err, activities) {
+    if (err){
+    } else {
+      var t = {main:{foo:activities}};
+      res.render('index', t);
+    }
+  });
+}
 
 exports.getAllActivities = function(req, res){
   Activity.find(function(err, activities){
