@@ -1,6 +1,7 @@
-<div class="activityHeader col-md-12">
-  <button type="button" class="close" aria-hidden="true"><span class="glyphicon glyphicon-trash"></span></button>
-  <h1>{{title}}</h1>
+  <div class="activityHeader row page-header">
+    <button type="button" class="close" aria-hidden="true"><span class="glyphicon glyphicon-trash"></span></button>
+    <h1>{{title}}</h1>
+  </div>
   <div class="row">
     {{#each tags}}
       <div class="col-md-1">
@@ -10,14 +11,43 @@
   </div>
   <hr>
 </div>
-<div class="activityContent col-md-12">
+<div class="activityContent row">
+  <div class="notes col-md-3">
+    <div class="row">
+      <div class='header col-md-6'>
+          <h2>Comments</h2>
+      </div>
+      <div class="add col-md-6">
+          <button type="button" aria-hidden="true"><span class="glyphicon glyphicon-plus"></span></button> 
+      </div>
+    </div>
+    {{#each notes}}
+      <div class="note col-md-12">
+        <blockquote>
+          <p>{{this}}</p>
+        </blockquote>
+      </div>
+    {{/each}}
+  </div>
+  <div class="webThumbs col-md-9">
+  <div class="row">
+    <div class="header col-md-6">
+      <h2>Sites</h2>
+    </div>
+    <div class="add" col-md-6">
+      <button type="button" aria-hidden="true"><span class="glyphicon glyphicon-plus"></span></button> 
+    </div>
+  </div>
   {{#each links}}
       <a href="{{url}}">
-      <div class="col-md-3" >
+      <div class="col-md-4" >
+        <div class="row">
+        <button type="button" class="close" aria-hidden="true"><span class="glyphicon glyphicon-trash"></span></button> 
+        </div>
         <div class="thumbnail">
           <img src="/letsdoit/images/webThumbs/{{thumbnail}}" alt="{{url}}">
         </div>
       </div>
       </a>
   {{/each}}
-</div>
+  </div>

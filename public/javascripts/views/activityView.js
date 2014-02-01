@@ -9,7 +9,7 @@ define(['jquery'
   },
 
   render: function () {
-    this.$el.addClass('activity');
+    this.$el.addClass('activity container');
     var context = this.model.toJSON();
     $(this.el).prepend(activityTemplate(context));
   }

@@ -17,11 +17,11 @@ define(['jquery'
       },
 
       render: function () {
-         this.$el.addClass("events");
+         this.$el.addClass("well");
          $(this.el).append(activitiesTemplate());
          this.collection.each(function(activity) {
              var activitySummaryView = new ActivitySummaryView({model: activity, collection: this.collection});
-             this.$('.row.activities').prepend(activitySummaryView.el);
+             this.$('.activities').prepend(activitySummaryView.el);
          }.bind(this));
       },
       refreshView : function (model, collections, options) {

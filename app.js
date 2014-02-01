@@ -4,7 +4,10 @@
 
 var express = require('express')
   , mongoose = require('mongoose')
-  , routes = require('./routes');
+  , routes = require('./routes')
+  , passport = require('passport')
+  , authenticator = require('./auth')();
+
 
 var app = module.exports = express.createServer();
 var io = require('socket.io').listen(app);
@@ -36,6 +39,8 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser());
   app.use(express.session({ secret: 'your secret here' }));
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
 });
@@ -51,6 +56,35 @@ mongoose.connect('mongodb://localhost/activities');
 db = mongoose.connection;
 
 // Routes
+app.get('/auth/google',
+  authenticator.authenticate('google'),
+  function(req, res){
+});
+
+app.get('/auth/google/callback',
+  authenticator.authenticate('google', 
+    {  
+      successRedirect: 'http://senetgam.es/letsdoit', 
+      failureRedirect: 'http://senetgam.es/login' 
+    }),
+  function(req, res) {
+   console.log('redirecting');
+});
+
+app.get('/auth/twitter',
+  authenticator.authenticate('twitter'),
+  function(req, res){
+});
+
+app.get('/auth/twitter/callback',
+  authenticator.authenticate('twitter', 
+    {  
+      successRedirect: 'http://senetgam.es/letsdoit', 
+      failureRedirect: 'http://senetgam.es/login' 
+    }),
+  function(req, res) {
+   console.log('redirecting');
+});
 
 app.get('/', routes.index);
 app.get('/activities', routes.getAllActivities);

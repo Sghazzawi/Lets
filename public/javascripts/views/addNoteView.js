@@ -2,8 +2,8 @@ define(['jquery'
        ,'underscore'
        ,'backbone'
        ,'handlebars'
-       ,'hbs!javascripts/views/templates/addTagTemplate'
-       , 'bootstrap'], function($, _, Backbone, HandleBars, addTagTemplate) {
+       ,'hbs!javascripts/views/templates/addNoteTemplate'
+       , 'bootstrap'], function($, _, Backbone, HandleBars, addNoteTemplate) {
     var addNoteView = Backbone.View.extend({
       events: {
       },
@@ -14,7 +14,7 @@ define(['jquery'
       },
 
       render: function () {
-       $(this.el).append(addTagTemplate({title: 'Add Note'}));
+       $(this.el).append(addNoteTemplate({title: 'Add Note'}));
        this.$('.add').on('click', this.addNote);
        this.$('.close').on('click', this.removeView);
        this.$('input').focus();
@@ -22,9 +22,11 @@ define(['jquery'
       },
 
       addNote: function() {
-        var notes = _.clone(this.model.get('notes'));
-        notes.push(this.$('input').val());
-        this.model.set('notes',notes);
+        //var notes = _.clone(this.model.get('notes'));
+        notes = [];
+        notes.push(this.$('textarea').val());
+        this.model.set('notes',notes.concat(this.model.get('notes')));
+        //this.model.set('notes',notes);
         console.log(this.model);
         this.remove();
       },

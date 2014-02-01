@@ -19,6 +19,7 @@ requirejs.config ({
     addURLView: "javascripts/views/addURLView",
     addNoteView: "javascripts/views/addNoteView",
     addDateView: "javascripts/views/addDateView",
+    navbarView: "javascripts/views/navbarView",
     socketio: "/socket.io/socket.io",
     socketFactory: "javascripts/socketFactory",
     realTimeModel: "javascripts/models/realTimeModel"

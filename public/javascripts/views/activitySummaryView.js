@@ -19,7 +19,7 @@ define(['jquery'
       },
 
       render: function () {
-         this.$el.addClass("col-md-6 activity");
+         this.$el.addClass("activity");
          var context = this.model.toJSON();
          $(this.el).prepend(activitySummaryTemplate(context));
          this.$('.tag').on('click', this.addTag);
@@ -27,6 +27,9 @@ define(['jquery'
          this.$('.url').on('click', this.addURL);
          this.$('.schedule').on('click', this.scheduleActivity);
          this.$('.close').on('click', this.removeActivity);
+         this.$('.thumbnail.loading img').load( 
+           function() {$(this).parent().removeClass('loading');
+         });
          return this;
       },
 
