@@ -13,6 +13,9 @@ exports.index = function(req, res){
   });
 }
 
+exports.login = function(req, res) {
+  res.render('login');
+}
 exports.getAllActivities = function(req, res){
   Activity.find(function(err, activities){
     if (err){

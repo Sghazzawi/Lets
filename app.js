@@ -87,6 +87,7 @@ app.get('/auth/twitter/callback',
 });
 
 app.get('/', routes.index);
+app.get('/login', routes.login);
 app.get('/activities', routes.getAllActivities);
 app.post('/activities',routes.addActivity);
 app.put('/activities/:id', routes.updateActivity);
