@@ -6,6 +6,6 @@ define(['socketio'],function(io){
       socket = io.connect('senetgam.es');
     } 
     return socket;
-  }
+  };
   return new factory();
 });

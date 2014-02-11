@@ -6,6 +6,9 @@ var mongoose = require('mongoose'),
 exports.index = function(req, res){
   Activity.find(function (err, activities) {
     if (err){
+      console.log('error');
+      console.dir(err);
+      res.status(500).send(err);
     } else {
       var t = {main:{foo:activities}};
       res.render('index', t);
